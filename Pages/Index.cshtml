@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4"> Request Manager</h1>
+    <form method="post">
+        <input type="text" asp-for="RM.LorX" placeholder="Landscape Overall Resolution X" />
+        <input type="text" asp-for="RM.LorY" placeholder="Landscape Overall Resolution Y" />
+        <input type="text" asp-for="RM.CoordX" placeholder="Coordinates X" />
+        <input type="text" asp-for="RM.CoordY" placeholder="Coordinates Y" />
+        <input type="text" asp-for="RM.NumComponentsX" placeholder="# Components X" value="4081" />
+        <input type="text" asp-for="RM.NumComponentsY" placeholder="# Components Y" />
+
+        <button type="submit">Submit</button>
+    </form>
+    <p>Current Link is: @Model.CurrentLink</p>
+</div>
+
