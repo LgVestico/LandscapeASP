@@ -39,8 +39,9 @@ namespace LandscapeAppWebsite.Pages
             {
                 return Page();
             }
+            RM.UpdateValues();
 
-            return RedirectToPage("./Index", new { CurrentLink = JoinLink() });//, new { RM.LorX });
+            return RedirectToPage("./Index", new { CurrentLink =  RM.URL  });//, new { RM.LorX });
         }
 
         private String JoinLink()

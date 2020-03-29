@@ -7,15 +7,30 @@
 <div class="text-center">
     <h1 class="display-4"> Request Manager</h1>
     <form method="post">
-        <input type="text" asp-for="RM.LorX" placeholder="Landscape Overall Resolution X" />
-        <input type="text" asp-for="RM.LorY" placeholder="Landscape Overall Resolution Y" />
-        <input type="text" asp-for="RM.CoordX" placeholder="Coordinates X" />
-        <input type="text" asp-for="RM.CoordY" placeholder="Coordinates Y" />
-        <input type="text" asp-for="RM.NumComponentsX" placeholder="# Components X" value="4081" />
-        <input type="text" asp-for="RM.NumComponentsY" placeholder="# Components Y" />
+        <!--ToDo: Evtl Validation: https://docs.microsoft.com/de-de/aspnet/web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites-->
+
+        <label for="LoR">Landscape Overall Resolution: </label>
+        <input type="text" name="LoR" asp-for="RM.LorX" placeholder="4081" />
+        <input type="text" name="LoR" asp-for="RM.LorY" placeholder="4081" />
+        <br />
+        <label for="Coord">Coordinates: </label>
+        <input type="text" name="Coord" asp-for="RM.CoordX" placeholder="694000" />
+        <input type="text" name="Coord" asp-for="RM.CoordY" placeholder="5333500" />
+        <br />
+        <label for="NumCo">Number of Components: </label>
+        <input type="text" name="NumCo" asp-for="RM.NumComponentsX" placeholder="4" />
+        <input type="text" name="NumCo" asp-for="RM.NumComponentsY" placeholder="4" />
+        <br />
+        <label for="Vers">Version: </label>
+        <input type="text" name="Vers" asp-for="RM.Version" placeholder="1.1.1" />
 
         <button type="submit">Submit</button>
     </form>
     <p>Current Link is: @Model.CurrentLink</p>
+    <div style="padding:10px;">
+        @if(@Model.CurrentLink != ""){
+            <img src="@Model.CurrentLink" alt="Satellite Image" />
+        }
+    </div>
 </div>
 
