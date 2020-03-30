@@ -35,12 +35,12 @@ namespace LandscapeAppWebsite.Models
         public String URL { get; set; }
 
         //Bottom left corner
-        private int BL_X { get; set; }
-        private int BL_Y { get; set; }
+        private float BL_X { get; set; }
+        private float BL_Y { get; set; }
 
         //Upper right corner
-        private int UR_X { get; set; }
-        private int UR_Y { get; set; }
+        private float UR_X { get; set; }
+        private float UR_Y { get; set; }
 
         public void UpdateValues()
         {

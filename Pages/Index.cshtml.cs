@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Threading.Tasks;
 using LandscapeAppWebsite.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +19,20 @@ namespace LandscapeAppWebsite.Pages
         {
             _logger = logger;
         }
+
         [BindProperty]
         public RequestManager RM { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public string CurrentLink { get; set; }
+
+        [BindProperty]
+        public string Server { get; set; }
+        public string[] Servers = new[] { "Bayern", "Sachsen" };
+
+        public string ErrorMessage { get; set; }
+
+
 
         public void OnGet()
         {
@@ -31,22 +42,19 @@ namespace LandscapeAppWebsite.Pages
             }
         }
 
-        //typical output of post:
+
         public IActionResult OnPost()
         {
             //Check whether input was correct
+            /*
             if (ModelState.IsValid == false)
             {
+                ErrorMessage = "Wrong Input";
                 return Page();
-            }
+            }*/
             RM.UpdateValues();
 
-            return RedirectToPage("./Index", new { CurrentLink =  RM.URL  });//, new { RM.LorX });
-        }
-
-        private String JoinLink()
-        {
-            return RM.CoordX.ToString();
+            return RedirectToPage("./Index", new { CurrentLink =  RM.URL  });
         }
     }
 }

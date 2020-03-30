@@ -2,35 +2,47 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+
+
 }
 
-<div class="text-center">
-    <h1 class="display-4"> Request Manager</h1>
-    <form method="post">
-        <!--ToDo: Evtl Validation: https://docs.microsoft.com/de-de/aspnet/web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites-->
+    <div class="text-center">
+        <h1 class="display-4"> Request Manager</h1>
+        <form method="post">
+            <!--ToDo: Evtl Validation: https://docs.microsoft.com/de-de/aspnet/web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites-->
 
-        <label for="LoR">Landscape Overall Resolution: </label>
-        <input type="text" name="LoR" asp-for="RM.LorX" placeholder="4081" />
-        <input type="text" name="LoR" asp-for="RM.LorY" placeholder="4081" />
-        <br />
-        <label for="Coord">Coordinates: </label>
-        <input type="text" name="Coord" asp-for="RM.CoordX" placeholder="694000" />
-        <input type="text" name="Coord" asp-for="RM.CoordY" placeholder="5333500" />
-        <br />
-        <label for="NumCo">Number of Components: </label>
-        <input type="text" name="NumCo" asp-for="RM.NumComponentsX" placeholder="4" />
-        <input type="text" name="NumCo" asp-for="RM.NumComponentsY" placeholder="4" />
-        <br />
-        <label for="Vers">Version: </label>
-        <input type="text" name="Vers" asp-for="RM.Version" placeholder="1.1.1" />
+            <label for="LoR">Landscape Overall Resolution: </label>
+            <input type="text" asp-for="RM.LorX" placeholder="4081" />
+            <input type="text" asp-for="RM.LorY" placeholder="4081" />
+            <br />
+            <label for="Coord">Coordinates: </label>
+            <input type="text" asp-for="RM.CoordX" placeholder="694000" />
+            <input type="text" asp-for="RM.CoordY" placeholder="5333500" />
+            <br />
+            <label for="NumCo">Number of Components: </label>
+            <input type="text" asp-for="RM.NumComponentsX" placeholder="4" />
+            <input type="text" asp-for="RM.NumComponentsY" placeholder="4" />
+            <br />
+            <label for="Vers">Version: </label>
+            <input type="text" asp-for="RM.Version" placeholder="1.1.1" />
 
-        <button type="submit">Submit</button>
-    </form>
-    <p>Current Link is: @Model.CurrentLink</p>
-    <div style="padding:10px;">
-        @if(@Model.CurrentLink != ""){
-            <img src="@Model.CurrentLink" alt="Satellite Image" />
-        }
+            <button type="submit">Submit</button>
+        </form>
+
+
+        <div style="padding:10px;">
+            @if (@Model.CurrentLink != "Not defined")
+            {
+            <a download="custom-filename.jpg" href="@Model.CurrentLink" title="Satellite Image">
+                <img src="@Model.CurrentLink" width="400">
+                <figcaption>Click to open in full size.</figcaption>
+            </a>
+            }
+        </div>
+
+        <p>Current Link is: <font size="0.5">@Model.CurrentLink</font></p>
+        
     </div>
-</div>
+
+
 
