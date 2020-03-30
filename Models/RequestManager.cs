@@ -8,25 +8,25 @@ namespace LandscapeAppWebsite.Models
 {
     public class RequestManager
     {
-        public int LorX { get; set; } = 4081;
-        public int LorY { get; set; } = 4081;
+        public int LorX { get; set; }// = 4081;
+        public int LorY { get; set; }// = 4081;
 
         public int CompSizeX { get; set; }
 
         public int CompSizeY { get; set; }
 
-        public int NumComponentsX { get; set; } = 4;
-        public int NumComponentsY { get; set; } = 4;
+        public int NumComponentsX { get; set; }// = 4;
+        public int NumComponentsY { get; set; }// = 4;
 
-        public int CoordX { get; set; } = 694000;
-        public int CoordY { get; set; } = 5333500;
+        public int CoordX { get; set; }// = 694000;
+        public int CoordY { get; set; }// = 5333500;
 
         public int NativePictureResX { get; set; }
         public int NativePictureResY { get; set; }
         
         public String ServerName { get; set; } = "https://geoservices.bayern.de/wms/v2/ogc_dop80_oa.cgi?";
 
-        public String Version { get; set; } = "1.1.1";
+        public String Version { get; set; }// = "1.1.1";
 
 
         public float DOPRes { get; set; } = 0.8f;
@@ -58,8 +58,9 @@ namespace LandscapeAppWebsite.Models
             //Version
             URL += "&VERSION=" + Version;
 
+            //!!! Not sure, which Resolution to use! URL += "&WIDTH=" + NativePictureResX + "&HEIGHT=" + NativePictureResY + "&SRS=EPSG:25832";
             URL += "&WIDTH=2048&HEIGHT=2048&SRS=EPSG:25832";
-            //URL += "&WIDTH=" + NativePictureResX + "&HEIGHT=" + NativePictureResY + "&SRS=EPSG:25832";
+            
 
             URL += "&BBOX=" + BL_X.ToString("F", CultureInfo.InvariantCulture) + "," + BL_Y.ToString("F", CultureInfo.InvariantCulture) + "," + UR_X.ToString("F", CultureInfo.InvariantCulture) + "," + UR_Y.ToString("F", CultureInfo.InvariantCulture);//691960.00,5331460.00,696040.00,5335540.00";
 

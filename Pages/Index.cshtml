@@ -8,6 +8,10 @@
 
     <div class="text-center">
         <h1 class="display-4"> Request Manager</h1>
+        @if (@Model.ErrorMessage != null)
+        {
+            <font color="red">Fehler: @Model.ErrorMessage</font>
+        }
         <form method="post">
             <!--ToDo: Evtl Validation: https://docs.microsoft.com/de-de/aspnet/web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites-->
 
@@ -33,15 +37,15 @@
         <div style="padding:10px;">
             @if (@Model.CurrentLink != "Not defined")
             {
-            <a download="custom-filename.jpg" href="@Model.CurrentLink" title="Satellite Image">
-                <img src="@Model.CurrentLink" width="400">
-                <figcaption>Click to open in full size.</figcaption>
-            </a>
+                <a download="custom-filename.jpg" href="@Model.CurrentLink" title="Satellite Image">
+                    <img src="@Model.CurrentLink" width="400">
+                    <figcaption>Click to open in full size.</figcaption>
+                </a>
             }
         </div>
 
         <p>Current Link is: <font size="0.5">@Model.CurrentLink</font></p>
-        
+
     </div>
 
 

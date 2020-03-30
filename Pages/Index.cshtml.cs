@@ -46,13 +46,14 @@ namespace LandscapeAppWebsite.Pages
         public IActionResult OnPost()
         {
             //Check whether input was correct
-            /*
+            
             if (ModelState.IsValid == false)
             {
                 ErrorMessage = "Wrong Input";
                 return Page();
-            }*/
+            }
             RM.UpdateValues();
+            ErrorMessage = null;
 
             return RedirectToPage("./Index", new { CurrentLink =  RM.URL  });
         }
