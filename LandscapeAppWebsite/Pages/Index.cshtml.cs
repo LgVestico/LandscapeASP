@@ -26,9 +26,9 @@ namespace LandscapeAppWebsite.Pages
         [BindProperty(SupportsGet = true)]
         public string CurrentLink { get; set; }
 
+        //First part of the link
         [BindProperty]
         public string Server { get; set; }
-        public string[] Servers = new[] { "Bayern", "Sachsen" };
 
         public string ErrorMessage { get; set; }
 
@@ -38,24 +38,30 @@ namespace LandscapeAppWebsite.Pages
         {
             if (string.IsNullOrWhiteSpace(CurrentLink))
             {
-                CurrentLink = "Not defined";
+                CurrentLink = null;
             }
         }
 
 
         public IActionResult OnPost()
         {
-            //Check whether input was correct
-            
-            if (ModelState.IsValid == false)
+            //reset link, to prevent site from reloading old values
+            CurrentLink = null;
+
+            //Check whether input was correct 
+            if (ModelState.IsValid == false || Server == null)
             {
-                ErrorMessage = "Wrong Input";
+                ErrorMessage = "Wrong Input";  
                 return Page();
             }
-            RM.UpdateValues();
-            ErrorMessage = null;
+            RM.UpdateValues(Server);
+            CurrentLink = RM.URL;
 
-            return RedirectToPage("./Index", new { CurrentLink =  RM.URL  });
+            //reset error message & RequestManager values
+            ErrorMessage = null;
+            RM = new RequestManager();
+
+            return RedirectToPage("./Index", new { CurrentLink  });
         }
     }
 }

@@ -1,0 +1,58 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+
+}
+
+    <div class="text-center">
+        <h1 class="display-4"> Request Manager</h1>
+        @if (@Model.ErrorMessage != null)
+        {
+            <font color="red">Error: @Model.ErrorMessage</font>
+        }
+    <form method="post">
+        <!--form to delegate inputs to the Request Manager member variables-->
+        <!--ToDo: Evtl Validation: https://docs.microsoft.com/de-de/aspnet/web-pages/overview/ui-layouts-and-themes/validating-user-input-in-aspnet-web-pages-sites-->
+
+        <label for="LoR">Landscape Overall Resolution: </label>
+        <input type="text" asp-for="RM.LorX" placeholder="Test value:   4081" />
+        <input type="text" asp-for="RM.LorY" placeholder="Test value:   4081" />
+        <br />
+        <label for="Coord">Coordinates: </label>
+        <input type="text" asp-for="RM.CoordX" placeholder="Test value:   694000" />
+        <input type="text" asp-for="RM.CoordY" placeholder="Test value:   5333500" />
+        <br />
+        <label for="NumCo">Number of Components: </label>
+        <input type="text" asp-for="RM.NumComponentsX" placeholder="Test value:   4" />
+        <input type="text" asp-for="RM.NumComponentsY" placeholder="Test value:   4" />
+        <br />
+        <label for="Vers">Version: </label>
+        <input type="text" asp-for="RM.Version" placeholder="Test value:   1.1.1" />        
+
+        <!--ToDo: Server Input field for manual input +-->
+        <select name="server">
+            <option value="">Select a server</option>
+            <option value="https://geoservices.bayern.de/wms/v2/ogc_dop80_oa.cgi?">Bayern</option>
+            <option value="https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest?">Sachsen</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <div style="padding:10px;">
+        <!--If Link is set, load picture +-->
+        @if (@Model.CurrentLink != null)
+        {
+            <a download="custom-filename.jpg" href="@Model.CurrentLink" title="Satellite Image">
+                <img src="@Model.CurrentLink" width="400">
+                <figcaption>Click to open in full size.</figcaption>
+            </a>
+            <p>Current Link is: <font size="0.5">@Model.CurrentLink</font></p>
+        }
+    </div>
+    </div>
+
+
+
